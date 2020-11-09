@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.lupesoft.soccerleague.data.team.Team" />
+
+        <import type="com.lupesoft.soccerleague.data.country.CountryVo" />
+
+        <import type="com.lupesoft.soccerleague.data.league.LeagueVo" />
+
+        <variable
+            name="listLeague"
+            type="java.util.List&lt;LeagueVo>" />
+
+        <variable
+            name="listCountry"
+            type="java.util.List&lt;CountryVo>" />
+
+        <variable
+            name="listTeam"
+            type="java.util.List&lt;Team>" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPie">
+
+        <TextView
+            style="?android:textAppearanceLarge"
+            isGone="@{(listTeam.size() > 0)}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:text="@string/list_is_empty"
+            android:textColor="@color/colorAccent"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/ic_info"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.30" />
+
+        <Spinner
+            android:id="@+id/search_country"
+            setDataCountry="@{listCountry}"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:background="@android:color/white"
+            android:contentDescription="@string/search_country"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/search_league"
+            setDataLeague="@{listLeague}"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:background="@android:color/white"
+            android:contentDescription="@string/search_league"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_country" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/team_list"
+            isGone="@{(listTeam.size() == 0)}"
+            setDataTeams="@{listTeam}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:contentDescription="@string/team_list"
+            android:paddingStart="@dimen/card_side_margin"
+            android:paddingTop="@dimen/header_margin"
+            android:paddingEnd="@dimen/card_side_margin"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_league"
+            tools:context="com.lupesoft.userlist.MainActivity"
+            tools:listitem="@layout/item_team" />
+
+        <include
+            android:id="@+id/loader"
+            layout="@layout/loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

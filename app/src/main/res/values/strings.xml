@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">SoccerLeague</string>
+    <string name="list_is_empty">List is empty</string>
+    <string name="stadium"><![CDATA[<b>Stadium:</b>]]> %1$s</string>
+    <string name="foundationyear"><![CDATA[<b>Foundation year:</b>]]> %1$s</string>
+    <string name="description"><![CDATA[<b>Description:</b>]]> %1$s</string>
+    <string name="league_name"><![CDATA[<b>League name:</b>]]> %1$s</string>
+    <string name="jersey">Jersey</string>
+    <string name="events">Events</string>
+    <string name="links">Links</string>
+    <string name="na">N/A</string>
+    <string name="search_country">Search country</string>
+    <string name="search_league">Search league</string>
+
+    //content description
+    <string name="team_list">Team List</string>
+
 </resources>

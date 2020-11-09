@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.text.Html" />
+
+        <variable
+            name="league"
+            type="com.lupesoft.soccerleague.data.team.League" />
+    </data>
+
+    <TextView
+        isGone="@{league.name == null}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:text="@{Html.fromHtml(@string/league_name(league.name))}"
+        android:textAppearance="?attr/textAppearanceListItem" />
+</layout>

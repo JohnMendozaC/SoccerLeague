@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.Html" />
+
+        <variable
+            name="team"
+            type="com.lupesoft.soccerleague.data.team.Team" />
+    </data>
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPie"
+        android:clickable="false"
+        android:clipToPadding="false"
+        android:focusable="false">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_acco_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:clickable="false"
+            android:clipToPadding="false"
+            android:focusable="false"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:clipToPadding="false"
+                android:focusable="false"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/gradient_soccer"
+                        app:layout_constraintBottom_toBottomOf="@+id/gl_team_details"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_team_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.75" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        imageUrl="@{team.badge}"
+                        android:layout_width="115dp"
+                        android:layout_height="115dp"
+                        android:background="@drawable/shape_circle"
+                        android:src="@drawable/ic_splash_soccer"
+                        app:layout_constraintBottom_toBottomOf="@+id/gl_team_details"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/gl_team_details" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:scrollbars="none"
+            android:visibility="visible"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_team"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/card_side_margin"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/card_side_margin"
+                    android:layout_marginBottom="@dimen/card_bottom_margin"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:cardPreventCornerOverlap="false"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/item_name"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_normal"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            android:layout_marginEnd="@dimen/margin_normal"
+                            android:text="@{team.name}"
+                            android:textAppearance="?attr/textAppearanceListItem"
+                            android:textColor="@color/colorAccent"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Name" />
+
+                        <TextView
+                            android:id="@+id/item_description"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_normal"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            android:layout_marginEnd="@dimen/margin_normal"
+                            android:text="@{Html.fromHtml(@string/description(team.description))}"
+                            android:textAppearance="?attr/textAppearanceListItemSecondary"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/item_name"
+                            app:layout_constraintVertical_bias="0.25"
+                            tools:text="description" />
+
+                        <TextView
+                            android:id="@+id/item_foundation_year"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_normal"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            android:layout_marginEnd="@dimen/margin_normal"
+                            android:layout_marginBottom="@dimen/margin_normal"
+                            android:text="@{Html.fromHtml(@string/foundationyear(team.foundationYear))}"
+                            android:textAppearance="?attr/textAppearanceListItemSecondary"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/item_description"
+                            app:layout_constraintVertical_bias="0.25"
+                            tools:text="foundation year" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_jersey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/card_side_margin"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/card_side_margin"
+                    android:layout_marginBottom="@dimen/card_bottom_margin"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:cardPreventCornerOverlap="false"
+                    app:layout_constraintTop_toBottomOf="@id/card_team">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/item_jersey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_normal"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            android:layout_marginEnd="@dimen/margin_normal"
+                            android:text="@string/jersey"
+                            android:textAppearance="?attr/textAppearanceListItem"
+                            android:textColor="@color/colorAccent"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Jersey" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            imageUrl="@{team.jersey}"
+                            android:layout_width="115dp"
+                            android:layout_height="115dp"
+                            android:layout_marginBottom="@dimen/margin_normal"
+                            android:src="@drawable/ic_splash_soccer"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/item_jersey" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_events"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/card_side_margin"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/card_side_margin"
+                    android:layout_marginBottom="@dimen/card_bottom_margin"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:cardPreventCornerOverlap="false"
+                    app:layout_constraintTop_toBottomOf="@id/card_jersey">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/item_events"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_normal"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            android:layout_marginEnd="@dimen/margin_normal"
+                            android:text="@string/events"
+                            android:textAppearance="?attr/textAppearanceListItem"
+                            android:textColor="@color/colorAccent"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Events" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_event"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_normal"
+                            setDataEvents="@{team.events}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/item_events"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:context="com.lupesoft.userlist.MainActivity"
+                            tools:listitem="@layout/item_event" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_links"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/card_side_margin"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/card_side_margin"
+                    android:layout_marginBottom="@dimen/card_bottom_margin"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:cardPreventCornerOverlap="false"
+                    app:layout_constraintTop_toBottomOf="@id/card_events">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/item_links"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_normal"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            android:layout_marginEnd="@dimen/margin_normal"
+                            android:layout_marginBottom="@dimen/margin_normal"
+                            android:text="@string/links"
+                            android:textAppearance="?attr/textAppearanceListItem"
+                            android:textColor="@color/colorAccent"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Name" />
+
+                        <TextView
+                            android:id="@+id/item_web"
+                            style="@style/TextLink"
+                            linkDirection="@{team.webSite}"
+                            textNotNull="@{team.webSite}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_normal"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            android:layout_marginEnd="@dimen/margin_normal"
+                            android:drawablePadding="@dimen/margin_extra_small"
+                            app:drawableStartCompat="@drawable/ic_web"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/item_links"
+                            app:layout_constraintVertical_bias="0.25"
+                            tools:text="web" />
+
+                        <TextView
+                            android:id="@+id/item_facebook"
+                            style="@style/TextLink"
+                            linkDirection="@{team.webFacebook}"
+                            textNotNull="@{team.webFacebook}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_normal"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            android:layout_marginEnd="@dimen/margin_normal"
+                            android:drawablePadding="@dimen/margin_extra_small"
+                            app:drawableStartCompat="@drawable/ic_fb"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/item_web"
+                            app:layout_constraintVertical_bias="0.25"
+                            tools:text="description" />
+
+                        <TextView
+                            android:id="@+id/item_twiter"
+                            style="@style/TextLink"
+                            linkDirection="@{team.webTwiter}"
+                            textNotNull="@{team.webTwiter}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_normal"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            android:layout_marginEnd="@dimen/margin_normal"
+                            android:drawablePadding="@dimen/margin_extra_small"
+                            app:drawableStartCompat="@drawable/ic_twiter"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/item_facebook"
+                            app:layout_constraintVertical_bias="0.25"
+                            tools:text="foundation year" />
+
+                        <TextView
+                            android:id="@+id/item_instagram"
+                            style="@style/TextLink"
+                            linkDirection="@{team.webInstagram}"
+                            textNotNull="@{team.webInstagram}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_normal"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            android:layout_marginEnd="@dimen/margin_normal"
+                            android:drawablePadding="@dimen/margin_extra_small"
+                            app:drawableStartCompat="@drawable/ic_instagram"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/item_twiter"
+                            app:layout_constraintVertical_bias="0.25"
+                            tools:text="foundation year" />
+
+                        <TextView
+                            android:id="@+id/item_youtube"
+                            style="@style/TextLink"
+                            linkDirection="@{team.video}"
+                            textNotNull="@{team.video}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_normal"
+                            android:layout_marginTop="@dimen/margin_normal"
+                            android:layout_marginEnd="@dimen/margin_normal"
+                            android:layout_marginBottom="@dimen/margin_normal"
+                            android:drawablePadding="@dimen/margin_extra_small"
+                            app:drawableStartCompat="@drawable/ic_youtube"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/item_instagram"
+                            app:layout_constraintVertical_bias="0.25"
+                            tools:text="foundation year" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

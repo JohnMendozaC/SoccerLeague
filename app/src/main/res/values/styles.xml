@@ -5,6 +5,17 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@drawable/splash_soccer</item>
     </style>
 
+    <style name="TextLink">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textAppearance">?attr/textAppearanceListItemSecondary</item>
+    </style>
+
+    <style name="SpinnerTextStyle" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:background">@drawable/spinner_background</item>
+        <item name="android:textAppearance">?attr/textAppearanceListItemSecondary</item>
+    </style>
 </resources>

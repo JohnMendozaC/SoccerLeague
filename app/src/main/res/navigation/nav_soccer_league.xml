@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_soccer_league"
+    app:startDestination="@id/soccerLeagueFragment">
+
+    <fragment
+        android:id="@+id/soccerLeagueFragment"
+        android:name="com.lupesoft.soccerleague.fragments.SoccerLeagueFragment"
+        android:label="SoccerLeagueFragment">
+        <action
+            android:id="@+id/action_soccerLeagueFragment_to_teamDetailsFragment"
+            app:destination="@id/teamDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/teamDetailsFragment"
+        android:name="com.lupesoft.soccerleague.fragments.TeamDetailsFragment"
+        android:label="TeamDetailsFragment" />
+
+
+
+</navigation>
